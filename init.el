@@ -11,29 +11,7 @@
 (setq inhibit-startup-screen t) ;; 跳过欢迎界面
 (electric-pair-mode t) ;; 括号自动配对
 ;; (set-face-attribute 'default nil :height 140) ;; font size
-
 ;; End
-
-;; keycast
-(keycast-mode-line-mode t) ;; show what i have pressed
-;; End
-
-;; Minibuffer
-(vertico-mode t) ;; company in vec, better view and complete everthing in minibuffer
-(setq completion-styles '(orderless)) ;; fuzz
-(marginalia-mode t);; with explain
-;; End
-
-
-;; embark
-;; (global-set-key (kbd "C-;") 'embark-act) ;; tell me what can i do
-;; (setq prefix-help-command 'embark-prefix-help-command)
-;; End
-
-;; Better search
-(global-set-key (kbd "C-s") 'consult-line)
-;; End 
-
 
 ;; 国内替换清华源
 (require 'package) ;; import package 
@@ -43,11 +21,47 @@
 (package-initialize) ;; init archives changes
 ;; End
 
+;; keycast
+(use-package keycast
+  :ensure t)
+(keycast-mode-line-mode t) ;; show what i have pressed
+;; End
+
+;; Minibuffer
+(use-package vertico
+  :ensure t)
+(use-package orderless
+  :ensure t)
+(use-package marginalia
+  :ensure t)
+(vertico-mode t) ;; company in vec, better view and complete everthing in minibuffer
+(setq completion-styles '(orderless)) ;; fuzz
+(marginalia-mode t);; with explain
+;; End
+
+
+;; embark
+;; (use-package embark
+;;  :ensure t)
+;; (global-set-key (kbd "C-;") 'embark-act) ;; tell me what can i do
+;; (setq prefix-help-command 'embark-prefix-help-command)
+;; End
+
+;; Better search
+(use-package consult
+  :ensure t)
+(global-set-key (kbd "C-s") 'consult-line)
+;; End 
+
 ;; 补全配置
+(use-package company
+  :ensure t)
 (global-company-mode 1) ;; 开启Company全局补全
 (setq company-prefix 1) ;; 开启补全的前缀长度
 (setq company-idle-begin 0) ;; 开启补全的延迟
 ;; End
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
