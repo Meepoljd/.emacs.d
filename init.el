@@ -3,6 +3,14 @@
 ;; 自用Emacs配置不再使用Spacemacs等大型的集成配置，大型配置的学习成本高，且没有办法养成自己的习惯
 ;; 转移笔记软件，GTD工具，邮箱管理等内容，实现日常工具的All in One
 
+;; 国内替换清华源
+(require 'package) ;; import package 
+(setq package-archives '(("gnu"    . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+                         ("nongnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
+                         ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+(package-initialize) ;; init archives changes
+;; End
+
 ;; 编辑器配置
 (global-display-line-numbers-mode 1) ;; 开启全局行号
 (setq tab-always-indent 'complete) ;; 开启Tab补全
@@ -22,24 +30,16 @@
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
 
+;; 一些美化
 (global-hl-line-mode 1);; 当前行高亮
 
 ;; 主题设置
-(use-package monokai-theme
+(use-package doom-themes
   :ensure t)
-(load-theme 'monokai 1)
-;; 一些美化
+(load-theme 'doom-one 1)
 
 
 ;; (set-face-attribute 'default nil :height 140) ;; font size
-;; End
-
-;; 国内替换清华源
-(require 'package) ;; import package 
-(setq package-archives '(("gnu"    . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ("nongnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
-                         ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
-(package-initialize) ;; init archives changes
 ;; End
 
 ;; keycast
@@ -65,14 +65,14 @@
  (use-package embark
    :ensure t)
 (use-package embark-consult
-    :ensure t)
+  :ensure t)
  (global-set-key (kbd "C-;") 'embark-act) ;; tell me what can i do
  (setq prefix-help-command 'embark-prefix-help-command)
 ;; End
 
 ;; Better search
 (use-package consult
-  :ensure t) 
+  :ensure t)
 (global-set-key (kbd "C-s") 'consult-line)
 (global-set-key (kbd "C-x b") 'consult-buffer) ;; 使用consult替换默认的buffer切换
 ;; End 
@@ -85,16 +85,6 @@
 (setq company-idle-begin 0) ;; 开启补全的延迟
 ;; End
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(monokai-theme consult embark marginalia orderless vertico keycast company)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; 分离custom部分
+(setq custom-file (expand-file-name "~/.emacs.d/lisp/custom.el"))
+(load custom-file 'no-error 'no-message)
