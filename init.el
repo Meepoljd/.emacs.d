@@ -22,6 +22,12 @@
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
 
+(global-hl-line-mode 1);; 当前行高亮
+
+;; 主题设置
+(use-package monokai-theme
+  :ensure t)
+(load-theme 'monokai 1)
 ;; 一些美化
 
 
@@ -57,14 +63,16 @@
 
 ;; embark
  (use-package embark
-  :ensure t)
+   :ensure t)
+(use-package embark-consult
+    :ensure t)
  (global-set-key (kbd "C-;") 'embark-act) ;; tell me what can i do
  (setq prefix-help-command 'embark-prefix-help-command)
 ;; End
 
 ;; Better search
 (use-package consult
-  :ensure t)
+  :ensure t) 
 (global-set-key (kbd "C-s") 'consult-line)
 (global-set-key (kbd "C-x b") 'consult-buffer) ;; 使用consult替换默认的buffer切换
 ;; End 
@@ -83,7 +91,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(consult embark marginalia orderless vertico keycast company)))
+   '(monokai-theme consult embark marginalia orderless vertico keycast company)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
