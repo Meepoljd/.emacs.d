@@ -10,6 +10,21 @@
 (scroll-bar-mode -1) ;; 关闭滑动组件
 (setq inhibit-startup-screen t) ;; 跳过欢迎界面
 (electric-pair-mode t) ;; 括号自动配对
+(setq-default cursor-type '(bar . 5))  ;; setq 是生效在当前buffer的，全局设置需要用到 setq-default
+(show-paren-mode t);; 显示括号匹配
+(setq make-backup-files nil) ;; 关闭备份文件
+(require 'recentf)
+(setq recentf-max-menu-item 10) ;; 记忆10个最近文件
+(delete-selection-mode t) ;; 编辑选择内容时，删除它
+
+;; 三个常用的查找
+(global-set-key (kbd "C-h C-f") 'find-function)
+(global-set-key (kbd "C-h C-v") 'find-variable)
+(global-set-key (kbd "C-h C-k") 'find-function-on-key)
+
+;; 一些美化
+
+
 ;; (set-face-attribute 'default nil :height 140) ;; font size
 ;; End
 
@@ -41,16 +56,17 @@
 
 
 ;; embark
-;; (use-package embark
-;;  :ensure t)
-;; (global-set-key (kbd "C-;") 'embark-act) ;; tell me what can i do
-;; (setq prefix-help-command 'embark-prefix-help-command)
+ (use-package embark
+  :ensure t)
+ (global-set-key (kbd "C-;") 'embark-act) ;; tell me what can i do
+ (setq prefix-help-command 'embark-prefix-help-command)
 ;; End
 
 ;; Better search
 (use-package consult
   :ensure t)
 (global-set-key (kbd "C-s") 'consult-line)
+(global-set-key (kbd "C-x b") 'consult-buffer) ;; 使用consult替换默认的buffer切换
 ;; End 
 
 ;; 补全配置
@@ -60,7 +76,6 @@
 (setq company-prefix 1) ;; 开启补全的前缀长度
 (setq company-idle-begin 0) ;; 开启补全的延迟
 ;; End
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
