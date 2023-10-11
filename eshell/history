@@ -1,0 +1,7 @@
+ls
+mkdir lisp
+mv custom.el lisp/
+ls
+cd lisp/
+ls
+touch packages.el

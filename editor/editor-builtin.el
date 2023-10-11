@@ -9,8 +9,7 @@
 (setq-default cursor-type '(bar . 5))  ;; setq 是生效在当前buffer的，全局设置需要用到 setq-default
 (show-paren-mode t);; 显示括号匹配
 (setq make-backup-files nil) ;; 关闭备份文件
-(require 'recentf)
-(setq recentf-max-menu-item 10) ;; 记忆10个最近文件
 (delete-selection-mode t) ;; 编辑选择内容时，删除它
+(global-hl-line-mode 1);; 当前行高亮
 
 (provide 'editor-builtin)

@@ -9,42 +9,33 @@
 (add-to-list 'load-path "~/.emacs.d/develop/")
 ;; End
 
-
-
-
 ;; 国内替换清华源
 (require 'package) ;; import package 
 (setq package-archives '(("gnu"    . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
                          ("nongnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
                          ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 (package-initialize) ;; init archives changes
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
 ;; End
+
+;; 安装use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(setq use-package-always-ensure t) ;; 开启默认自动安装
 
 ;; require
 (require 'editor-builtin)
-
-;; 三个常用的查找
-(global-set-key (kbd "C-h C-f") 'find-function)
-(global-set-key (kbd "C-h C-v") 'find-variable)
-(global-set-key (kbd "C-h C-k") 'find-function-on-key)
-
-;; 一些美化
-(global-hl-line-mode 1);; 当前行高亮
-
-;; 主题设置
-(use-package doom-themes
-  :ensure t)
-(load-theme 'doom-one 1)
+(require 'editor-key)
+(require 'editor-theme)
+(require 'editor-org)
 
 
-;; (set-face-attribute 'default nil :height 140) ;; font size
-;; End
+(use-package recentf)
+(setq recentf-max-menu-item 10) ;; 记忆10个最近文件
 
-;; keycast
-(use-package keycast
-  :ensure t)
-(keycast-mode-line-mode t) ;; show what i have pressed
-;; End
 
 ;; Minibuffer
 (use-package vertico
