@@ -3,6 +3,15 @@
 ;; 自用Emacs配置不再使用Spacemacs等大型的集成配置，大型配置的学习成本高，且没有办法养成自己的习惯
 ;; 转移笔记软件，GTD工具，邮箱管理等内容，实现日常工具的All in One
 
+
+;; 引入模块
+(add-to-list 'load-path "~/.emacs.d/editor/")
+(add-to-list 'load-path "~/.emacs.d/develop/")
+;; End
+
+
+
+
 ;; 国内替换清华源
 (require 'package) ;; import package 
 (setq package-archives '(("gnu"    . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
@@ -11,19 +20,8 @@
 (package-initialize) ;; init archives changes
 ;; End
 
-;; 编辑器配置
-(global-display-line-numbers-mode 1) ;; 开启全局行号
-(setq tab-always-indent 'complete) ;; 开启Tab补全
-(tool-bar-mode -1) ;; 关闭工具栏
-(scroll-bar-mode -1) ;; 关闭滑动组件
-(setq inhibit-startup-screen t) ;; 跳过欢迎界面
-(electric-pair-mode t) ;; 括号自动配对
-(setq-default cursor-type '(bar . 5))  ;; setq 是生效在当前buffer的，全局设置需要用到 setq-default
-(show-paren-mode t);; 显示括号匹配
-(setq make-backup-files nil) ;; 关闭备份文件
-(require 'recentf)
-(setq recentf-max-menu-item 10) ;; 记忆10个最近文件
-(delete-selection-mode t) ;; 编辑选择内容时，删除它
+;; require
+(require 'editor-builtin)
 
 ;; 三个常用的查找
 (global-set-key (kbd "C-h C-f") 'find-function)
