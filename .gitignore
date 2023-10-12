@@ -12,3 +12,9 @@
 
 # ELPA
 elpa
+
+# Eshell
+eshell
+
+# Custom
+custom.el

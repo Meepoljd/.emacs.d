@@ -36,5 +36,5 @@
 (require 'org-init)
 
 ;; 分离custom部分
-(setq custom-file (expand-file-name "~/.emacs.d/lisp/custom.el"))
+(setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file 'no-error 'no-message)
