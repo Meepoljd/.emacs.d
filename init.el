@@ -35,6 +35,8 @@
 
 (require 'org-init)
 
+(require 'dev-go)
+
 ;; 分离custom部分
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file 'no-error 'no-message)
