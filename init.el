@@ -34,6 +34,9 @@
 (require 'editor-key)
 
 (require 'org-init)
+(require 'org-roam-init)
+;; (require 'org-hugo)
+
 
 (require 'dev-go)
 
